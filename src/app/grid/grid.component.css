@@ -1,0 +1,52 @@
+#gridDiv{
+    list-style: none;    
+    display: flex;
+    flex-wrap:wrap;
+    flex-direction:row;
+    /* height: 600px; */
+    width: 900px;
+    justify-content: space-around;
+}
+.gridItemDiv{
+    background:wheat;
+    height: 140px;
+    width: 140px;
+    margin:15px;
+    line-height:140px;
+    font-weight: bold;
+    font-size: 1.5em;
+    text-align: center;
+    color:black;
+}
+.revealAllButton{
+    font-size: 4em;
+}
+.revealed:not(.revealAll){
+    box-shadow:0px 0px 0px 10px black inset;
+}
+.revealAll.revealed{
+    font-size: 0em;
+}
+.teamBlack.showing{
+    background: black;
+    color:white;
+}
+
+.teamGray.showing{
+    background:darkgray;
+    color:black;
+}
+
+.teamBlue.showing{
+    background:cornflowerblue;
+    color:black;
+}
+
+.teamRed.showing{
+    background:firebrick;
+    color:white;
+}
+
+.seedBox{
+    font-size:3em;
+}

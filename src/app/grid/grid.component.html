@@ -1,0 +1,16 @@
+
+  <button class="revealAllButton" (click)="toggleRevealAll()">Reveal/Hide All</button>
+<div>
+  <label class="seedBox"> Seed: </label>
+  <input type="text" class="seedBox" #seedBox (keyup.enter)="setSeed(seedBox.value)" value="{{seed}}">
+</div>
+<div id="gridDiv">
+  <div *ngFor="let item of items" (click)="toggleRevealItem(item)" class="gridItemDiv team{{item.team}} {{revealAll?'revealAll':''}} {{(item.revealed||revealAll)?'showing':''}} {{item.revealed?'revealed':''}}">
+    {{item.description}}
+  </div>
+</div>
+<!-- <ul>
+  <li *ngFor="let item of items">
+    <span class="badge">{{item.description}}</span> 
+  </li>
+</ul> -->

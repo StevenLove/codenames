@@ -9,5 +9,9 @@
   "exclude": [
     "test.ts",
     "**/*.spec.ts"
+  ],
+  "lib": [ /* added for Array prototype includes fn */
+    "dom",
+    "es7"
   ]
 }
