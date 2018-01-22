@@ -59,7 +59,8 @@ const generateSeedFromTime = () => {
     const minutes = new Date().getMinutes();
     const rounded = Math.floor(minutes/5);
     const dateString = new Date().toLocaleDateString();
-    const seed = rounded+"XLAIDJFOAIWEJF"+dateString;
+    const hours = new Date().getHours();
+    const seed = rounded+"XLAIDJFOAIWEJF"+dateString + hours;
     return seed;
 }
 

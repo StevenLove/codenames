@@ -9,10 +9,12 @@
 }
 .gridItemDiv{
     background:wheat;
-    height: 140px;
-    width: 140px;
+    height: 100px;
+    width: 150px;
     margin:15px;
-    line-height:140px;
+    line-height:100px;
+    /* align-items: center;
+    justify-content: center; */
     font-weight: bold;
     font-size: 1.5em;
     text-align: center;
@@ -49,4 +51,18 @@
 
 .seedBox{
     font-size:3em;
+}
+
+.btn{
+    font-size:3em;
+}
+
+kbd.key {
+    border-radius: 3px;
+    padding: 1px 2px 0;
+    border: 1px solid black;
+}
+
+.firstTeam{
+    width:900px;
 }
