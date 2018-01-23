@@ -132,9 +132,9 @@ export class GridComponent implements OnInit {
   claimToNotBeSpymaster = this.setNotSpymaster;
 
   
-
-  constructor(private ss: SeedService) {
-    
+  ss: SeedService;
+  constructor(ss: SeedService) {
+    this.ss = ss;
   }
 
   ngOnInit() {
