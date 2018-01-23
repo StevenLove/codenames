@@ -4,14 +4,14 @@
     flex-wrap:wrap;
     flex-direction:row;
     /* height: 600px; */
-    width: 900px;
+    width: 1100px;
     justify-content: space-around;
 }
 .gridItemDiv{
     background:wheat;
     height: 100px;
-    width: 150px;
-    margin:15px;
+    width: 200px;
+    margin:5px;
     line-height:100px;
     /* align-items: center;
     justify-content: center; */
@@ -19,6 +19,8 @@
     font-size: 1.5em;
     text-align: center;
     color:black;
+    user-select:none;
+    border-radius:25px;
 }
 .revealAllButton{
     font-size: 4em;
@@ -64,5 +66,6 @@ kbd.key {
 }
 
 .firstTeam{
-    width:900px;
+    width:1100px;
+    text-align:center;
 }

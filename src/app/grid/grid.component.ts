@@ -28,24 +28,36 @@ export class GridComponent implements OnInit {
     console.log(this.revealAll,"reveal all called");
   }
 
+  cycleTeam = (item:GridItem) => {
+    const nextTeam = team => {
+      if(team == "Red") return "Blue";
+      if(team == "Blue") return "Gray";
+      if(team == "Gray") return "Black";
+      if(team == "Black") return "Red";
+    }
+    if(!item.revealed){
+      item.revealed = true;
+      item.team = "Red";
+    }
+    else if(item.team == "Black"){
+      item.revealed = false;
+    }
+    else{
+      item.team = nextTeam(item.team);
+    }
+  }
+
   toggleRevealItem = (item:GridItem) => {
-    // const nextTeam = team => {
-    //   if(team == "Red") return "Blue";
-    //   if(team == "Blue") return "Gray";
-    //   if(team == "Gray") return "Black";
-    //   if(team == "Black") return "Red";
-    // }
-    // if(!item.revealed){
-    //   item.revealed = true;
-    //   item.team = "Red";
-    // }
-    // else if(item.team == "Black"){
-    //   item.revealed = false;
-    // }
-    // else{
-    //   item.team = nextTeam(item.team);
-    // }
-    item.revealed = !item.revealed;
+      item.revealed = !item.revealed;
+  }
+
+  clickItem = (item:GridItem) => {
+    if(this.isSpymaster){
+      this.toggleRevealItem(item);
+    }
+    else{
+      this.cycleTeam(item);
+    }
   }
 
 
@@ -59,7 +71,7 @@ export class GridComponent implements OnInit {
     Randomizer.setSeed(seed);
 
     WordList.getRandomWords(25).forEach(desc=>{
-      this.items.push({description:desc,team:"Not Set",revealed:false})
+      this.items.push({description:desc,team:"Not Set",revealed:false,trueTeam:"Not Set"})
     })
     console.log(this.items);
 
@@ -77,10 +89,11 @@ export class GridComponent implements OnInit {
       const civilians = indices.splice(0,numCivilians);
       const assassin = indices[0];
       
-      reds.forEach(index=>this.items[index].team="Red");
-      blues.forEach(index=>this.items[index].team="Blue");
-      civilians.forEach(index=>this.items[index].team="Gray");
-      this.items[assassin].team="Black";
+      reds.forEach(index=>this.items[index].trueTeam="Red");
+      blues.forEach(index=>this.items[index].trueTeam="Blue");
+      civilians.forEach(index=>this.items[index].trueTeam="Gray");
+      this.items[assassin].trueTeam="Black";
+      this.items.forEach(item=>item.team = item.trueTeam);
     }
 
     generateTargets();
@@ -101,6 +114,10 @@ export class GridComponent implements OnInit {
   setSpymaster = () => {
     this.isSpymaster = true;
     this.identityConfirmed = true;
+    this.items.forEach(item=>{
+      item.team=item.trueTeam;
+      item.revealed = false;
+    });
   }
   setNotSpymaster = () => {
     this.isSpymaster = false;

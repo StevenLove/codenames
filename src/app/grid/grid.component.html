@@ -21,24 +21,24 @@
 <h3> How to Play </h3>
 <p>
   Some things are a little different in this digital version.<br>
-  Clicking on a tile will reveal whether it belonged to Red Team, Blue Team, or was a Civilian or the Assassin.<br>
-  So, try to refrain from unnecessary clicking or touching of the screen as you could accidentally reveal a spy.<br>
   <br>
-  If you are a Spymaster, click the appropriate button below.<br>
-  Spymasters will see a button that reveals the entire board. Just like the 'Key' card in the board game!<br>
-  Unlike the physical game, Spymasters don't have to sit next to each other. Just as long as nobody else can see your phone.<br>
+  For the public board...<br>
+  Click the 'No!' button below, as you are not a Spymaster.<br>
+  Any tile that you click on will cycle through all possible values: Red, Blue, Civilian, and Assassin.<br>
+  After choosing a tile, you'll have to ask your Spymaster if you were right.<br>
+  <br>
+  For Spymasters...<br>
+  Click the 'Yes!' button below.<br>
+  The true colors should be revealed to you now. Make sure to hide this from other operatives.<br>
+  You can click on tiles to hide their text.<br>
+  This can reduce visual clutter and indicate which tiles have already been chosen.<br>
 </p>
 
 <!-- Identification Buttons -->
 <div *ngIf="!identityConfirmed">
-  <h2> Are you a Spymaster? </h2>
+  <span style="font-size:3em"> Are you a Spymaster? </span>
   <button class="btn" (click)="claimToBeSpymaster()">Yes!</button>
   <button class="btn" (click)="claimToNotBeSpymaster()">No!</button>
-</div>
-<br>
-<!-- Show/Hide button  -->
-<div *ngIf="identityConfirmed && isSpymaster">
-  <button class="btn" (click)="toggleRevealAll()">Show/Hide Spymaster Info</button>
 </div>
 <br>
 <!-- Seed Box -->
@@ -47,9 +47,9 @@
   <input type="text" class="seedBox" #seedBox (keyup.enter)="this.ss.setSeed(seedBox.value)" value="{{this.ss.initialSeed}}">
 </div>
 <!-- Grid -->
-<h4 class="team{{firstTeam}} showing firstTeam">{{firstTeam}} goes first</h4>
+<h1 class="team{{firstTeam}} showing firstTeam">{{firstTeam}} goes first</h1>
 <div id="gridDiv">
-  <div *ngFor="let item of items" (click)="toggleRevealItem(item)" class="gridItemDiv team{{item.team}} {{revealAll?'revealAll':''}} {{(item.revealed||revealAll)?'showing':''}} {{item.revealed?'revealed':''}}">
+  <div *ngFor="let item of items" (click)="clickItem(item)" class="gridItemDiv team{{item.team}} {{isSpymaster?'revealAll':''}} {{(item.revealed||isSpymaster)?'showing':''}} {{item.revealed?'revealed':''}}">
     {{item.description}}
   </div>
 </div>
