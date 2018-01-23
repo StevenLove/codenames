@@ -22,29 +22,25 @@ export class GridComponent implements OnInit {
   revealAll:boolean = false;
   seed: string;
   firstTeam;
+
+  getGameModeName = () => WordList.getWordListName();
   
-  toggleRevealAll = () => {
-    this.revealAll = !this.revealAll;
-    console.log(this.revealAll,"reveal all called");
-  }
+  // toggleRevealAll = () => {
+  //   this.revealAll = !this.revealAll;
+  //   console.log(this.revealAll,"reveal all called");
+  // }
 
   cycleTeam = (item:GridItem) => {
     const nextTeam = team => {
+      if(team == "None") return "Red";
       if(team == "Red") return "Blue";
       if(team == "Blue") return "Gray";
       if(team == "Gray") return "Black";
-      if(team == "Black") return "Red";
+      if(team == "Black") return "None";
     }
-    if(!item.revealed){
-      item.revealed = true;
-      item.team = "Red";
-    }
-    else if(item.team == "Black"){
-      item.revealed = false;
-    }
-    else{
-      item.team = nextTeam(item.team);
-    }
+    item.team = nextTeam(item.team);
+    if(item.team != "None") item.revealed = true;
+    else item.revealed = false;
   }
 
   toggleRevealItem = (item:GridItem) => {
@@ -70,6 +66,10 @@ export class GridComponent implements OnInit {
 
     Randomizer.setSeed(seed);
 
+    if(this.modeName == "codenames")WordList.useCodenamesList();
+    if(this.modeName == "duet")WordList.useDuetList();
+    if(this.modeName == "undercover")WordList.useUnderCoverList();
+
     WordList.getRandomWords(25).forEach(desc=>{
       this.items.push({description:desc,team:"Not Set",revealed:false,trueTeam:"Not Set"})
     })
@@ -93,7 +93,7 @@ export class GridComponent implements OnInit {
       blues.forEach(index=>this.items[index].trueTeam="Blue");
       civilians.forEach(index=>this.items[index].trueTeam="Gray");
       this.items[assassin].trueTeam="Black";
-      this.items.forEach(item=>item.team = item.trueTeam);
+      this.items.forEach(item=>item.team = "None");
     }
 
     generateTargets();
@@ -102,6 +102,7 @@ export class GridComponent implements OnInit {
   setSeed = (seed:string) => {
     console.log("setSeed in grid component",seed);
     // this.ss.setSeed(seed);
+    this.seed = seed;
     this.createGrid(seed);
   }
 
@@ -130,6 +131,19 @@ export class GridComponent implements OnInit {
     }
   }
   claimToNotBeSpymaster = this.setNotSpymaster;
+
+
+  private refreshGrid = () => this.createGrid(this.seed);
+
+  modeName:string = "codenames";
+
+  chooseMode = (value) => {
+    console.log("choose mode",value,this.modeName);
+    this.modeName = value;
+    this.refreshGrid();
+  }
+
+
 
   
   ss: SeedService;

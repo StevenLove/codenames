@@ -21,37 +21,40 @@
     color:black;
     user-select:none;
     border-radius:25px;
+    box-shadow:0px 0px 0px 2px gray inset;
 }
 .revealAllButton{
     font-size: 4em;
 }
-.revealed:not(.revealAll){
+.revealed:not(.spymaster){
     box-shadow:0px 0px 0px 10px black inset;
 }
-.revealAll.revealed{
+.revealed.spymaster{
     font-size: 0em;
 }
-.teamBlack.showing{
+
+
+.teamBlack{
     background: black;
     color:white;
 }
 
-.teamGray.showing{
+.teamGray{
     background:darkgray;
     color:black;
 }
 
-.teamBlue.showing{
+.teamBlue{
     background:cornflowerblue;
     color:black;
 }
 
-.teamRed.showing{
+.teamRed{
     background:firebrick;
     color:white;
 }
 
-.seedBox{
+.lg{
     font-size:3em;
 }
 
@@ -68,4 +71,9 @@ kbd.key {
 .firstTeam{
     width:1100px;
     text-align:center;
+}
+
+#gameChooser{
+    font-size:3em;
+    font-weight:bold;
 }
