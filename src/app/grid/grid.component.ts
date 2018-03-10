@@ -65,38 +65,68 @@ export class GridComponent implements OnInit {
 
 
     Randomizer.setSeed(seed);
-
-    if(this.modeName == "codenames")WordList.useCodenamesList();
-    if(this.modeName == "duet")WordList.useDuetList();
-    if(this.modeName == "undercover")WordList.useUnderCoverList();
-
-    WordList.getRandomWords(25).forEach(desc=>{
-      this.items.push({description:desc,team:"Not Set",revealed:false,trueTeam:"Not Set"})
-    })
-    console.log(this.items);
-
-    const generateTargets = () => {
-      let indices = new Array(25).fill(0).map((val,index)=>index);
-      indices = Randomizer.shuffle(indices);
-      const teams = ["Red","Blue"];
-      this.firstTeam = Randomizer.elementFromArray(teams);
-      const numReds = this.firstTeam == "Red"?9:8;
-      const numBlues = this.firstTeam == "Blue"?9:8;
-      const numCivilians = 7;
-
-      const reds = indices.splice(0,numReds);
-      const blues = indices.splice(0,numBlues);
-      const civilians = indices.splice(0,numCivilians);
-      const assassin = indices[0];
-      
-      reds.forEach(index=>this.items[index].trueTeam="Red");
-      blues.forEach(index=>this.items[index].trueTeam="Blue");
-      civilians.forEach(index=>this.items[index].trueTeam="Gray");
-      this.items[assassin].trueTeam="Black";
-      this.items.forEach(item=>item.team = "None");
+    let numWords = 25;
+    let teams = {
+      Red:8,
+      Blue:8,
+      Gray:7,
+      Black:1,
+      Green:0
     }
 
-    generateTargets();
+
+    if(this.modeName == "codenames"){
+      WordList.useCodenamesList();
+    }
+    
+    if(this.modeName == "undercover"){
+      WordList.useUnderCoverList();
+    }
+
+    if(this.modeName == "duet"){
+      WordList.useDuetList();
+    }
+
+    /* initialize grid items with random words */
+    WordList.getRandomWords(numWords).forEach(desc=>{
+      this.items.push({description:desc,team:"None",revealed:false,trueTeam:"None"})
+    })
+
+    const generateDuetKeyCards = (numItems) => {
+      let indices = Randomizer.shuffledIndices(numItems);
+      let colors = new Array(numItems);
+      
+      indices.forEach(index=>{
+        colors[index] = {a:"Black",b:"Green"};
+      })
+
+    }
+
+    /* assign teams to each grid item */
+    const generateKeyCard = (numItems) => {
+      let indices = Randomizer.shuffledIndices(numItems);
+      let colors = new Array(numItems);
+      /* determine first player team */
+      const firstPlayerTeams = ["Red","Blue"];
+      this.firstTeam = Randomizer.elementFromArray(firstPlayerTeams);
+      /* add 1 to team of first player */
+      teams[this.firstTeam] += 1;
+      /* determine which items get which team */
+      const reds = indices.splice(0,teams.Red);
+      const blues = indices.splice(0,teams.Blue);
+      const civilians = indices.splice(0,teams.Gray);
+      const assassins = indices.splice(0,teams.Black);
+      const greens = indices.splice(0,teams.Green);
+      /* combine into one array */
+      reds.forEach(     index=>colors[index]="Red");
+      blues.forEach(    index=>colors[index]="Blue");
+      civilians.forEach(index=>colors[index]="Gray");
+      assassins.forEach(index=>colors[index]="Black");
+      greens.forEach(   index=>colors[index]="Green");
+      return colors;
+    }
+    /* assign key card's colors to all the grid items */
+    generateKeyCard(numWords).forEach((color,index)=>this.items[index].trueTeam = color);
   }
 
   setSeed = (seed:string) => {
@@ -134,13 +164,43 @@ export class GridComponent implements OnInit {
 
 
   private refreshGrid = () => this.createGrid(this.seed);
-
-  modeName:string = "codenames";
+  private DEFAULTMODE = "codenames";
+  modeName:string;
 
   chooseMode = (value) => {
     console.log("choose mode",value,this.modeName);
+    document.querySelector("#gameChooser > [value=" + value +"]").setAttribute("selected","true");
+    this.storeListName(value);
     this.modeName = value;
     this.refreshGrid();
+  }
+  private storeListName = name => {
+      console.log("storing list name ",name);
+      window.sessionStorage.setItem("listName",name);
+  }
+  private chooseAppropriateDefaultList = () => {
+      let stored = window.sessionStorage.getItem("listName");
+      console.log("stored",stored);
+      if(stored){
+          this.chooseMode(stored);
+      }
+      else{
+          this.chooseMode(this.DEFAULTMODE);
+      }
+  }
+
+  /* timer */
+  private timeSinceLastChange = 0;
+  private timerStarted = false;
+  flipTimer = () => {
+    this.timeSinceLastChange = 0;
+    if(!this.timerStarted){
+      window.setInterval(this.updateTimer,1000);
+      this.timerStarted = true;
+    }
+  }
+  private updateTimer = () => {
+    ++this.timeSinceLastChange;
   }
 
 
@@ -155,6 +215,7 @@ export class GridComponent implements OnInit {
     // Will fire everytime other component use the setter this.ss.setLogged()
     this.ss.getSeed().subscribe(this.setSeed);
     this.setSeed(this.ss.initialSeed);
+    this.chooseAppropriateDefaultList();
  }
 
 }

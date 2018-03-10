@@ -1215,7 +1215,9 @@ let list = codenamesList;
 
 const useUnderCoverList = () => list = undercoverList;
 const useDuetList = () => list = duetList;
-const useCodenamesList = () => list = codenamesList;
+const useCodenamesList = () => list = codenamesList
+
+
 
 const getWordListName = () => {
     if(list == undercoverList)return "Codenames: Undercover";

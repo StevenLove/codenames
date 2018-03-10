@@ -64,6 +64,11 @@ const generateSeedFromTime = () => {
     return seed;
 }
 
+const shuffledIndices = n => {
+    let indices = new Array(n).fill(0).map((val,index)=>index);
+    return Randomizer.shuffle(indices);
+}
+
 export const Randomizer = {
     shuffle:shuffle,
     elementFromArray:elementFromArray,
@@ -71,5 +76,6 @@ export const Randomizer = {
     intInRangeHalfOpen:intInRangeHalfOpen,
     intInRangeInclusive:intInRangeInclusive,
     setSeed:setSeed,
-    generateSeedFromTime:generateSeedFromTime
+    generateSeedFromTime:generateSeedFromTime,
+    shuffledIndices:shuffledIndices
 }

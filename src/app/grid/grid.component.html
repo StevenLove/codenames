@@ -10,8 +10,8 @@
 
 <h4> A word-guessing game designed by Vlaada Chvátil.</h4>
 <h3> Rules </h3>
-<p> If you are unfamiliar with the rules, check out <a href="https://en.wikipedia.org/wiki/Codenames_(board_game)#Rules">the Wikipedia page</a> or 
-  <a href="https://czechgames.com/files/rules/codenames-rules-en.pdf">The official rules pdf</a>.<br>
+<p> If you are unfamiliar with the rules, check out <a href="https://en.wikipedia.org/wiki/Codenames_(board_game)#Rules" target="_blank">the Wikipedia page</a> or 
+  <a href="https://czechgames.com/files/rules/codenames-rules-en.pdf" target="_blank">The official rules pdf</a>.<br>
 </p>
 <h3> Setup </h3>
 <h4> Required Materials </h4>
@@ -25,7 +25,7 @@
 <p>
   You'll want to make sure that everyone is playing the same game. <br>
   Check the value of the Seed below, and make sure it's the same on all three devices. <br>
-  If they aren't, everyone should agree on a Seed to use and type it into the Seed box below and hit <kbd class='key'>Enter</kbd>.<br>
+  If they aren't, everyone should agree on a Seed to use and type it into the Seed box below and hit <kbd class='key'>Enter</kbd> or the Set Seed Button<br>
 </p>
 <h3> How to Play </h3>
 <p>
@@ -42,6 +42,8 @@
   You can click on tiles to hide their text.<br>
   This can reduce visual clutter and indicate which tiles have already been chosen.<br>
 </p>
+<h3> Chill Tunes </h3>
+<iframe src="https://open.spotify.com/embed/user/1137876031/playlist/35HE0QT1p4gOxhOnjZ6oky" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
 
 <!-- Identification Buttons -->
 <div *ngIf="!identityConfirmed">
@@ -54,11 +56,13 @@
 <div>
   <label class="lg"> Seed: </label>
   <input type="text" class="lg" #seedBox (keyup.enter)="this.ss.setSeed(seedBox.value)" value="{{this.ss.initialSeed}}">
+  <button class="btn" (click)="this.ss.setSeed(seedBox.value)">Set Seed</button>
 </div>
 <!-- Grid -->
-<h1 class="team{{firstTeam}} showing firstTeam">{{firstTeam}} goes first</h1>
+<h1 class="team{{firstTeam}} showing firstTeam">{{firstTeam}} goes first </h1>
 <div id="gridDiv">
   <div *ngFor="let item of items" (click)="clickItem(item)" class="gridItemDiv {{isSpymaster?'team'+item.trueTeam + ' spymaster' : 'team'+item.team}} {{item.revealed?'revealed':''}} ">
     {{item.description}}
   </div>
+  <span class="timer" (click)="flipTimer()">{{timeSinceLastChange}}</span>
 </div>
