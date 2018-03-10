@@ -190,7 +190,7 @@ export class GridComponent implements OnInit {
   }
 
   /* timer */
-  private timeSinceLastChange = 0;
+  timeSinceLastChange = 0;
   private timerStarted = false;
   flipTimer = () => {
     this.timeSinceLastChange = 0;
