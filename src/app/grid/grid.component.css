@@ -4,7 +4,7 @@
     flex-wrap:wrap;
     flex-direction:row;
     /* height: 600px; */
-    width: 95%;
+    width: 90vw;
     position:relative;
     justify-content: space-around;
 }
