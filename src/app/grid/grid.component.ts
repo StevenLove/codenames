@@ -139,11 +139,16 @@ export class GridComponent implements OnInit {
     let calculatedVw = Math.floor(50 - (1.1) * (len+6));
     let maxVw = 30;
     let vw = Math.min(maxVw,calculatedVw);
-    document.querySelector('.seedLabel').style.left = vw+"vw";
+    let el = document.querySelector('.seedLabel');
+    // console.log("style",el.getAttribute("style"));
+    el.setAttribute("style","left: "+vw+"vw");
+    // el.style.left = vw+"vw";
     console.log(vw);
     this.seed = seed;
     this.createGrid(seed);
   }
+
+  showChillTunes = false;
 
 
 
@@ -202,14 +207,16 @@ export class GridComponent implements OnInit {
   timeSinceLastChange = "timer"; // this is a hack to show 'timer' until it is initialized
   private timerStarted = false;
   flipTimer = () => {
-    this.timeSinceLastChange = 1;
+    this.timeSinceLastChange = "1";
     if(!this.timerStarted){
       window.setInterval(this.updateTimer,1000);
       this.timerStarted = true;
     }
   }
   private updateTimer = () => {
-    ++this.timeSinceLastChange;
+    let val = Number.parseInt(this.timeSinceLastChange);
+
+    this.timeSinceLastChange = (val+1)+"";
   }
 
 
