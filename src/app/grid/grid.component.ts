@@ -47,13 +47,16 @@ export class GridComponent implements OnInit {
       item.revealed = !item.revealed;
   }
 
-  clickItem = (item:GridItem) => {
+  clickItem = (item:GridItem,event) => {
     if(this.isSpymaster){
       this.toggleRevealItem(item);
     }
     else{
       this.cycleTeam(item);
     }
+    event.preventDefault();
+    event.stopPropagation();
+    return false;
   }
 
 

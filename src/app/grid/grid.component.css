@@ -4,15 +4,15 @@
     flex-wrap:wrap;
     flex-direction:row;
     /* height: 600px; */
-    width: 90vw;
+    width: 99vw;
     position:relative;
     justify-content: space-around;
 }
 .gridItemDiv{
     background:rgba(245, 222, 179, 0.8);
     height: 16vh;
-    width: 16vw;
-    margin:2vmin;
+    width: 19vw;
+    margin:1px;
     line-height:16vh;
     /* align-items: center;
     justify-content: center; */
@@ -80,8 +80,9 @@ kbd.key {
 }
 
 .firstTeam{
-    width:90vw;
+    width:95vw;
     text-align:center;
+    position:relative;
 }
 
 #gameChooser{
@@ -93,7 +94,7 @@ kbd.key {
     float:right;
     width:65px;
     position:absolute;
-    right:-70px;
+    right:5px;
     top:0;
-    font-size:1.8em;
+    font-size:1em;
 }

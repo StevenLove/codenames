@@ -62,10 +62,9 @@
   <button class="btn" (click)="this.ss.setSeed(seedBox.value)">Set Seed</button>
 </div>
 <!-- Grid -->
-<h1 class="team{{firstTeam}} showing firstTeam">{{firstTeam}} goes first </h1>
+<h1 class="team{{firstTeam}} showing firstTeam">{{firstTeam}} goes first <button class="timer btn" (click)="flipTimer()">{{timeSinceLastChange}}</button></h1>
 <div id="gridDiv">
-  <div *ngFor="let item of items" (click)="clickItem(item)" class="gridItemDiv {{isSpymaster?'team'+item.trueTeam + ' spymaster' : 'team'+item.team}} {{item.revealed?'revealed':''}} ">
+  <div *ngFor="let item of items" (click)="clickItem(item,$event)" class="gridItemDiv {{isSpymaster?'team'+item.trueTeam + ' spymaster' : 'team'+item.team}} {{item.revealed?'revealed':''}} ">
     {{item.description}}
   </div>
-  <button class="timer btn" (click)="flipTimer()">{{timeSinceLastChange}}</button>
 </div>
