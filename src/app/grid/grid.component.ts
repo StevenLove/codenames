@@ -135,6 +135,12 @@ export class GridComponent implements OnInit {
   setSeed = (seed:string) => {
     console.log("setSeed in grid component",seed);
     // this.ss.setSeed(seed);
+    let len = seed.length;
+    let calculatedVw = Math.floor(50 - (1.1) * (len+6));
+    let maxVw = 30;
+    let vw = Math.min(maxVw,calculatedVw);
+    document.querySelector('.seedLabel').style.left = vw+"vw";
+    console.log(vw);
     this.seed = seed;
     this.createGrid(seed);
   }
@@ -193,10 +199,10 @@ export class GridComponent implements OnInit {
   }
 
   /* timer */
-  timeSinceLastChange = 0;
+  timeSinceLastChange = "timer"; // this is a hack to show 'timer' until it is initialized
   private timerStarted = false;
   flipTimer = () => {
-    this.timeSinceLastChange = 0;
+    this.timeSinceLastChange = 1;
     if(!this.timerStarted){
       window.setInterval(this.updateTimer,1000);
       this.timerStarted = true;

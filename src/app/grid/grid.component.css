@@ -1,3 +1,26 @@
+#titleDiv{
+    width:98vw;
+    font-size:5vw;
+    font-weight:bold;
+    text-align:center;
+}
+#gameChooser{
+    width:98vw;
+    font-weight:bold;
+    text-align:center;
+}
+#seedBox{
+    width:98vw;
+    text-align:center;
+    font-weight:bold;
+}
+.seedLabel{
+    position:absolute;
+    top:6vh;
+    font-size:5vw;
+    font-weight:bold;
+    color:black
+}
 #gridDiv{
     list-style: none;    
     display: flex;
@@ -65,13 +88,6 @@
     color:white;
 }
 
-.lg{
-    font-size:3em;
-}
-
-.btn{
-    font-size:3em;
-}
 
 kbd.key {
     border-radius: 3px;
@@ -80,21 +96,35 @@ kbd.key {
 }
 
 .firstTeam{
-    width:95vw;
+    width:98vw;
+    height:14vh;
+    font-size:5vw;
     text-align:center;
     position:relative;
 }
 
-#gameChooser{
-    font-size:3em;
-    font-weight:bold;
+.bar{
+    height:14vh;
+    font-size:3vw;
+}
+
+#chillTunes{
+    width:98vw
+}
+
+h3{
+    margin:0px;
+}
+h1{
+    margin:0px;
+}
+#claimToBeSpymaster{
+    width:98vw;
 }
 
 .timer{
     float:right;
-    width:65px;
-    position:absolute;
-    right:5px;
-    top:0;
-    font-size:1em;
+    width:20vw;
+    font-size:3vw;
+    height:14vh;
 }
