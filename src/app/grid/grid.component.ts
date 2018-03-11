@@ -139,7 +139,7 @@ export class GridComponent implements OnInit {
     let calculatedVw = Math.floor(50 - (1.1) * (len+6));
     let maxVw = 30;
     let vw = Math.min(maxVw,calculatedVw);
-    let el = document.querySelector('.seedLabel');
+    let el = document.querySelector('#seedLabel');
     // console.log("style",el.getAttribute("style"));
     el.setAttribute("style","left: "+vw+"vw");
     // el.style.left = vw+"vw";
@@ -204,7 +204,7 @@ export class GridComponent implements OnInit {
   }
 
   /* timer */
-  timeSinceLastChange = "timer"; // this is a hack to show 'timer' until it is initialized
+  timeSinceLastChange = "Timer"; // this is a hack to show 'timer' until it is initialized
   private timerStarted = false;
   flipTimer = () => {
     this.timeSinceLastChange = "1";

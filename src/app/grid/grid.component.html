@@ -1,9 +1,9 @@
 <!-- <h1 *ngIf="modeName=='codenames'" class="lg"> Codenames! </h1>
 <h1 *ngIf="modeName=='undercover'" class="lg"> Codenames: Deep Undercover! </h1>
 <h1 *ngIf="modeName=='duet'" class="lg"> Codenames: Duet! </h1> -->
-<div id="titleDiv" class="bar"> Codenames </div>
+<div id="titleDiv"> Codenames </div>
 <select id="gameChooser" class="bar" #t (change)="chooseMode(t.value)">
-  <option  value="codenames">Choose Game Mode</option>
+  <option  value="codenames">Change Game Mode</option>
   <option  value="codenames">Codenames!</option>
   <option  value="undercover">Codenames: Deep Undercover!</option>
   <option  value="duet">Codenames: Duet!</option>
@@ -46,16 +46,16 @@
 <p>
   Updated 3/10/2018
 </p> -->
-<button id="chillTunes" class="bar" (click)="showChillTunes = !showChillTunes">Chill Tunes</button>
+<button id="chillTunes" class="btn" (click)="showChillTunes = !showChillTunes">Chill Tunes</button>
 <iframe *ngIf="showChillTunes" src="https://open.spotify.com/embed/user/1137876031/playlist/35HE0QT1p4gOxhOnjZ6oky" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-<button *ngIf="!identityConfirmed" id="claimToBeSpymaster" class="bar" (click)="claimToBeSpymaster()">I am a spymaster</button>
+<button *ngIf="!identityConfirmed" id="claimToBeSpymaster" class="btn" (click)="claimToBeSpymaster()">I am a Spymaster</button>
 <!-- Seed Box -->
-<div style="position:relative">
+<div class="bar" style="position:relative">
   <input id="seedBox" class="bar"type="text" #seedBox (input)="this.ss.setSeed(seedBox.value)" value="{{this.ss.initialSeed}}">
-  <span class="seedLabel bar">Seed:</span>
+  <span id="seedLabel">Seed:</span>
 </div>
 <!-- Grid -->
-<h1 class="team{{firstTeam}} showing firstTeam">{{firstTeam}} goes first <button class="timer btn" (click)="flipTimer()">{{timeSinceLastChange}}</button></h1>
+<div class="team{{firstTeam}} showing firstTeam bar">{{firstTeam}} goes first <button class="timer" (click)="flipTimer()">{{timeSinceLastChange}}</button></div>
 <div id="gridDiv">
   <div *ngFor="let item of items" (click)="clickItem(item,$event)" class="gridItemDiv {{isSpymaster?'team'+item.trueTeam + ' spymaster' : 'team'+item.team}} {{item.revealed?'revealed':''}} ">
     {{item.description}}

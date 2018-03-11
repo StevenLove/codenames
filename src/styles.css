@@ -4,3 +4,7 @@ body{
     color:#DDDDDD;
     margin:0px;
 }
+
+html,body{
+    overflow-x:hidden;
+}
