@@ -64,5 +64,5 @@
   <div *ngFor="let item of items" (click)="clickItem(item)" class="gridItemDiv {{isSpymaster?'team'+item.trueTeam + ' spymaster' : 'team'+item.team}} {{item.revealed?'revealed':''}} ">
     {{item.description}}
   </div>
-  <span class="timer" (click)="flipTimer()">{{timeSinceLastChange}}</span>
+  <button class="timer btn" (click)="flipTimer()">{{timeSinceLastChange}}</button>
 </div>
