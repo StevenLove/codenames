@@ -32,7 +32,7 @@ export class GridComponent implements OnInit {
     return 100/this.cols - 0.5;
   }
   getItemHeight = () => {
-    return 100/this.rows - 0.5;
+    return 85/this.rows;
   }
 
   
@@ -66,7 +66,6 @@ export class GridComponent implements OnInit {
       this.cycleTeam(item);
     }
     this.flipTimer();
-    this.updateScores();
     event.preventDefault();
     event.stopPropagation();
     return false;
@@ -98,42 +97,33 @@ export class GridComponent implements OnInit {
     }
     let teams = normalTeams;
 
+    this.rows = 5;
+    this.cols = 5;
 
     if(this.modeName == "codenames"){
       WordList.useCodenamesList();
-      this.rows = 5;
-      this.cols = 5;
     }
     
     if(this.modeName == "undercover"){
       WordList.useUnderCoverList();
-      this.rows = 5;
-      this.cols = 5;
     }
 
     if(this.modeName == "duet"){
       WordList.useDuetList();
-      this.rows = 5;
-      this.cols = 5;
     }
     
     if(this.modeName == "emoji"){
       WordList.useEmojiList();
       teams = picturesTeams;
       this.rows = 4;
-      this.cols = 5;
       numWords = 20;
     }
     if(this.modeName == "paintings"){
       WordList.usePaintingsList();
-      this.rows = 5;
-      this.cols = 4;
+      teams = picturesTeams;
+      this.rows = 4;
       numWords = 20;
     }
-
-    // document.querySelector(".gridItemDiv").style.width=this.getItemWidth();
-    // document.querySelector(".gridItemDiv").style.height=this.getItemHeight();
-
 
     /* initialize grid items with random words */
     WordList.getRandomWords(numWords).forEach(desc=>{
@@ -175,16 +165,7 @@ export class GridComponent implements OnInit {
     }
     /* assign key card's colors to all the grid items */
     generateKeyCard(numWords).forEach((color,index)=>this.items[index].trueTeam = color);
-
-    /* set sizes */
-    // let gridItems = document.querySelectorAll(".gridItemDiv");
-    // if(gridItems.length > 0){
-    //   gridItems.forEach(item=>{
-    //     console.log("width",this.getItemHeight())
-    //     item.style.width = this.getItemWidth()+"vw";
-    //     item.style.height = this.getItemHeight()+"vh";
-    //   })
-    // }
+    // setTimeout(this.setSizes,1);
   }
 
   setSeed = (seed:string) => {
@@ -245,6 +226,19 @@ export class GridComponent implements OnInit {
     this.modeName = value;
     this.refreshGrid();
   }
+  private setSizes = () => {
+    /* set sizes */
+    let gridItems = Array.from(document.querySelectorAll(".gridItemDiv"));
+    // gridItems = Array.from(gridItems);
+    if(gridItems.length > 0){
+      gridItems.forEach(item=>{
+        let html:HTMLElement = item as HTMLElement;
+        console.log("width",this.getItemHeight())
+        html.style.width = this.getItemWidth()+"vw";
+        html.style.height = this.getItemHeight()+"vh";
+      })
+    }
+  }
   private storeListName = name => {
       console.log("storing list name ",name);
       window.sessionStorage.setItem("listName",name);
@@ -276,21 +270,24 @@ export class GridComponent implements OnInit {
   }
 
 /* scoreboard */
-  private updateScores = () => {
-    let r = this.items.filter(item=>item.team=="Red").length;
-    let b = this.items.filter(item=>item.team=="Blue").length;
-    let rMax = this.firstTeam == "Red"?9:8;
-    let bMax = this.firstTeam == "Blue"?9:8;
-
-    this.redScore = r;
-    this.blueScore = b;
-    this.redScoreMax = rMax;
-    this.blueScoreMax = bMax;
+  getRedMaxScore = () => {
+    let max = 7;
+    if(!["emoji","paintings"].includes(this.modeName)) ++max;
+    if(this.firstTeam == "Red") ++max;
+    return max;
   }
-  redScore = 0;
-  blueScore = 0;
-  redScoreMax = 8;
-  blueScoreMax = 8;
+  getBlueMaxScore = () => {
+    let max = 7;
+    if(!["emoji","paintings"].includes(this.modeName)) ++max;
+    if(this.firstTeam == "Blue") ++max;
+    return max;
+  }
+  getRedScore = () => {
+    return this.items.filter(item=>item.team=="Red").length;
+  }
+  getBlueScore = () => {
+    return this.items.filter(item=>item.team=="Blue").length;;
+  }
 
   // re = require("random-emoji");
   // console.log(re);

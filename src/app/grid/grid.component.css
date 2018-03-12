@@ -53,15 +53,29 @@
     border-radius:2vmin;
     box-shadow:0px 0px 0px 1vmin gray inset;
 }
+.gridItemDiv.cols-5{
+    width:19.5vw;
+}
+.gridItemDiv.rows-5{
+    height:17vh
+}
+.gridItemDiv.cols-4{
+    width:24.5vw;
+}
+.gridItemDiv.rows-4{
+    height:21.75vh
+}
 .emoji{
-    height:8vh;
-    padding-top:4vh;
+    height:18vh;
+    padding-top:2vh;
 }
 .painting{
-    height:16vh;
+    height:19vh;
+    padding-top:1vh;
 }
 .revealed>.gridItemContents{
     opacity:0.25;
+    text-shadow:none;
 }
 .revealAllButton{
     font-size: 4em;
@@ -73,28 +87,28 @@
 }
 
 .teamGray{
-    background:darkgray;
-    color:black;
+    background:#555555;
+    color:white;
 }
 
 .teamBlue{
     background:#99badd; /* tarheel blue */
     color:white;
-    text-shadow:
+    /* text-shadow:
 		-0.03em -0.03em 0 #000,
 		0.03em -0.03em 0 #000,
 		-0.03em 0.03em 0 #000,
-		0.03em 0.03em 0 #000;
+		0.03em 0.03em 0 #000; */
 }
 
 .teamRed{
     background:#CC0000; /* wolfpack red */
     color:white;
-    text-shadow:
+    /* text-shadow:
 		-0.03em -0.03em 0 #000,
 		0.03em -0.03em 0 #000,
 		-0.03em 0.03em 0 #000,
-		0.03em 0.03em 0 #000;
+		0.03em 0.03em 0 #000; */
 }
 
 
@@ -110,6 +124,27 @@ kbd.key {
     text-align:center;
     position:relative;
 }
+#firstTeamBubble{
+    background-color:white;
+    color:black;
+    width:20vw;
+    margin-left:auto;
+    margin-right:auto;
+}
+.bubble{
+    border-radius:5vw;
+    height:8vh;
+    position:relative;
+    top:3vh;
+    line-height:normal;
+    text-align:center;
+}
+#scoreBoard .bubble{
+    width:30vw;
+    background-color:white;
+    color:black;
+}
+
 .btn{
     height:14vh;
     font-size:3vw;
@@ -147,6 +182,7 @@ h1{
 .timer{
     position:absolute;
     right:2vw;
+    top:0;
     width:20vw;
     font-size:3vw;
     height:14vh;
