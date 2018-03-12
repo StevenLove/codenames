@@ -42,6 +42,7 @@
     width: 19.5vw;
     /* margin:1vw; */
     line-height:16vh;
+    overflow:hidden;
     /* align-items: center;
     justify-content: center; */
     font-weight: bold;
@@ -52,26 +53,19 @@
     border-radius:2vmin;
     box-shadow:0px 0px 0px 1vmin gray inset;
 }
+.emoji{
+    height:8vh;
+    padding-top:4vh;
+}
+.painting{
+    height:16vh;
+}
+.revealed>.gridItemContents{
+    opacity:0.25;
+}
 .revealAllButton{
     font-size: 4em;
 }
-/* .revealed:not(.spymaster){
-    box-shadow:0px 0px 0px 10px black inset;
-}
-.revealed.spymaster{
-    font-size: 0em;
-} */
-
-.revealed{
-    font-size:0em;
-    /* box-shadow:0px 0px 0px 2vmin black inset; */
-}
-/* .revealed.teamBlack,.revealed.teamRed{
-    color:rgba(255,255,255,0.15);
-}
-.revealed.teamGray,.revealed.teamBlue{
-    color:rgba(0,0,0,0.15);
-} */
 
 .teamBlack{
     background: black;
@@ -84,13 +78,23 @@
 }
 
 .teamBlue{
-    background:cornflowerblue;
-    color:black;
+    background:#99badd; /* tarheel blue */
+    color:white;
+    text-shadow:
+		-0.03em -0.03em 0 #000,
+		0.03em -0.03em 0 #000,
+		-0.03em 0.03em 0 #000,
+		0.03em 0.03em 0 #000;
 }
 
 .teamRed{
-    background:firebrick;
+    background:#CC0000; /* wolfpack red */
     color:white;
+    text-shadow:
+		-0.03em -0.03em 0 #000,
+		0.03em -0.03em 0 #000,
+		-0.03em 0.03em 0 #000,
+		0.03em 0.03em 0 #000;
 }
 
 
@@ -131,9 +135,20 @@ h1{
     width:99vw;
 }
 
+#scoreBoard{
+    position:absolute;
+    left:2vw;
+    width:40vw;
+    font-size:3vw;
+    height:14vh;
+    text-align:left;
+}
+
 .timer{
-    float:right;
+    position:absolute;
+    right:2vw;
     width:20vw;
     font-size:3vw;
     height:14vh;
+    text-align:right;
 }

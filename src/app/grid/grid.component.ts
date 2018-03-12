@@ -3,6 +3,7 @@ import { GridItem } from '../GridItem';
 import { WordList } from '../WordList';
 import { Randomizer } from '../Randomizer';
 import { SeedService } from '../shared/seed.service';
+import { Emoji } from "../Emoji";
 
 
 @Component({
@@ -11,6 +12,8 @@ import { SeedService } from '../shared/seed.service';
   styleUrls: ['./grid.component.css'],
   providers: [SeedService]
 })
+
+
 
 
 // const makeGridItem = 
@@ -22,8 +25,16 @@ export class GridComponent implements OnInit {
   revealAll:boolean = false;
   seed: string;
   firstTeam;
+  rows = 5;
+  cols = 5;
 
-  getGameModeName = () => WordList.getWordListName();
+  getItemWidth = () => {
+    return 100/this.cols - 0.5;
+  }
+  getItemHeight = () => {
+    return 100/this.rows - 0.5;
+  }
+
   
   // toggleRevealAll = () => {
   //   this.revealAll = !this.revealAll;
@@ -54,6 +65,8 @@ export class GridComponent implements OnInit {
     else{
       this.cycleTeam(item);
     }
+    this.flipTimer();
+    this.updateScores();
     event.preventDefault();
     event.stopPropagation();
     return false;
@@ -65,30 +78,62 @@ export class GridComponent implements OnInit {
     this.revealAll = false;
     this.targets = [];
 
-
+    seed = seed.toLowerCase(); // case insensitive
 
     Randomizer.setSeed(seed);
     let numWords = 25;
-    let teams = {
+    const normalTeams = {
       Red:8,
       Blue:8,
       Gray:7,
       Black:1,
       Green:0
     }
+    const picturesTeams = {
+      Red:7,
+      Blue:7,
+      Gray:4,
+      Black:1,
+      Green:0
+    }
+    let teams = normalTeams;
 
 
     if(this.modeName == "codenames"){
       WordList.useCodenamesList();
+      this.rows = 5;
+      this.cols = 5;
     }
     
     if(this.modeName == "undercover"){
       WordList.useUnderCoverList();
+      this.rows = 5;
+      this.cols = 5;
     }
 
     if(this.modeName == "duet"){
       WordList.useDuetList();
+      this.rows = 5;
+      this.cols = 5;
     }
+    
+    if(this.modeName == "emoji"){
+      WordList.useEmojiList();
+      teams = picturesTeams;
+      this.rows = 4;
+      this.cols = 5;
+      numWords = 20;
+    }
+    if(this.modeName == "paintings"){
+      WordList.usePaintingsList();
+      this.rows = 5;
+      this.cols = 4;
+      numWords = 20;
+    }
+
+    // document.querySelector(".gridItemDiv").style.width=this.getItemWidth();
+    // document.querySelector(".gridItemDiv").style.height=this.getItemHeight();
+
 
     /* initialize grid items with random words */
     WordList.getRandomWords(numWords).forEach(desc=>{
@@ -130,6 +175,16 @@ export class GridComponent implements OnInit {
     }
     /* assign key card's colors to all the grid items */
     generateKeyCard(numWords).forEach((color,index)=>this.items[index].trueTeam = color);
+
+    /* set sizes */
+    // let gridItems = document.querySelectorAll(".gridItemDiv");
+    // if(gridItems.length > 0){
+    //   gridItems.forEach(item=>{
+    //     console.log("width",this.getItemHeight())
+    //     item.style.width = this.getItemWidth()+"vw";
+    //     item.style.height = this.getItemHeight()+"vh";
+    //   })
+    // }
   }
 
   setSeed = (seed:string) => {
@@ -150,7 +205,9 @@ export class GridComponent implements OnInit {
 
   showChillTunes = false;
 
-
+  // window.setInterval(()=>{
+  //   twemoji.parse(document.body,{size:72});
+  // },2000);
 
 
   isSpymaster:boolean = false;
@@ -204,23 +261,41 @@ export class GridComponent implements OnInit {
   }
 
   /* timer */
-  timeSinceLastChange = "Timer"; // this is a hack to show 'timer' until it is initialized
+  timeSinceLastChange = 0;
   private timerStarted = false;
   flipTimer = () => {
-    this.timeSinceLastChange = "1";
+    this.timeSinceLastChange = 0;
     if(!this.timerStarted){
       window.setInterval(this.updateTimer,1000);
       this.timerStarted = true;
     }
   }
   private updateTimer = () => {
-    let val = Number.parseInt(this.timeSinceLastChange);
-
-    this.timeSinceLastChange = (val+1)+"";
+    ++this.timeSinceLastChange;
+    // twemoji.parse(document.body,{size:72});
   }
 
+/* scoreboard */
+  private updateScores = () => {
+    let r = this.items.filter(item=>item.team=="Red").length;
+    let b = this.items.filter(item=>item.team=="Blue").length;
+    let rMax = this.firstTeam == "Red"?9:8;
+    let bMax = this.firstTeam == "Blue"?9:8;
 
+    this.redScore = r;
+    this.blueScore = b;
+    this.redScoreMax = rMax;
+    this.blueScoreMax = bMax;
+  }
+  redScore = 0;
+  blueScore = 0;
+  redScoreMax = 8;
+  blueScoreMax = 8;
 
+  // re = require("random-emoji");
+  // console.log(re);
+  // res = re.random({count:2});
+  // console.log(res);
   
   ss: SeedService;
   constructor(ss: SeedService) {
@@ -232,6 +307,8 @@ export class GridComponent implements OnInit {
     this.ss.getSeed().subscribe(this.setSeed);
     this.setSeed(this.ss.initialSeed);
     this.chooseAppropriateDefaultList();
+    console.log("emoji",Emoji.ultron);
+
  }
 
 }

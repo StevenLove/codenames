@@ -1,4 +1,5 @@
 import { Randomizer } from "./Randomizer";
+import { Emoji } from "./Emoji";
 
 
 const codenamesList: string[] = [
@@ -43,7 +44,7 @@ const codenamesList: string[] = [
     "Missile",
     "Paste",
     "Drop",
-    "Pheonix",
+    "Phoenix",
     "Marble",
     "Staff",
     "Figure",
@@ -1200,6 +1201,109 @@ const duetList: string[] = [
     "Wood"
 ]
 
+const paintingsList: string[] = [
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_mona_lisa_by_leonardo_da_vinci.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_starry_night_by_vincent_van_gogh.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_scream_by_edvard_munch.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_night_watch_by_rembrandt_m29.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_kiss_by_gustav_klimt.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_arnolfini_portrait_by_jan_van_eyck_v44.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_girl_with_a_pearl_earring_by_johannes_vermeer.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_impression,_sunrise_by_claude_monet.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_las_meninas_by_diego_velazquez_l36.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_creation_of_adam_by_michelangelo.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_luncheon_of_the_boating_party_by_pierre-auguste_renoir_x40.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_grand_odalisque_by_jean_auguste_dominique_ingres_f91.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_happy_accidents_of_the_swing_by_jean-honore_fragonard_s7.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_liberty_leading_the_people_by_eugene_delacroix.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_birth_of_venus_by_sandro_botticelli_v46.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_napoleon_crossing_the_alps_by_jacques-louis_david_i39.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_musicians_by_caravaggio.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_american_gothic_by_grant_wood_c92.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_sunday_afternoon_on_the_island_of_la_grande_jatte_by_georges_seurat_t11.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_sleeping_gypsy_by_henri_rousseau.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_triumph_of_galatea_by_raphael_h76.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_gleaners_by_jean-francois_millet.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_primavera_by_sandro_botticelli_c99.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_third_of_may_1808_by_francisco_goya_h39.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_charles_i_in_three_positions_by_anthony_van_dyck.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_wanderer_above_the_sea_of_fog_by_caspar_david_friedrich.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_olympia_by_edouard_manet.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_tower_of_babel_by_pieter_bruegel_the_elder_w1.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_view_of_toledo_by_el_greco_c24.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_a_cotton_office_in_new_orleans_by_edgar_degas_u56.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_bacchus_and_ariadne_by_titian_y83.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_sleepers_by_gustave_courbet.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_gross_clinic_by_thomas_eakins_n38.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_ninth_wave_by_ivan_aivazovsky_m94.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_last_supper_by_leonardo_da_vinci_e69.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_st._george_and_the_dragon_by_paolo_uccello_o25.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_mr_and_mrs_robert_andrews_by_thomas_gainsborough.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_pollice_verso_by_jean-leon_gerome_n88.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_pilgrimage_to_cythera_by_antoine_watteau_h25.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_large_bathers_by_paul_cezanne_j99.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_astronomer_by_johannes_vermeer_l73.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_wave_by_william-adolphe_bouguereau_o33.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_fall_of_the_damned_by_peter_paul_rubens_k14.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_a_bar_at_the_folies_bergere_by_edouard_manet.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_storm_on_the_sea_of_galilee_by_rembrandt_f63.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_laughing_cavalier_by_frans_hals_g38.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_paris_street_in_rainy_weather_by_gustave_caillebotte.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_foxes_by_franz_marc_y6.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_lady_with_the_ermine_by_leonardo_da_vinci.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_watson_and_the_shark_by_john_singleton_copley_s96.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_ladies_waldegrave_by_joshua_reynolds_o12.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_arrangement_in_grey_and_black_no_1_portrait_of_the_artists_mother_by_james_abbott_mcneill_whistler_c15.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_dance_at_the_moulin_de_la_galette_by_pierre_auguste_renoir.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_breezing_up_by_winslow_homer_w66.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_great_wave_off_kanagawa_by_katsushika_hokusai_q50.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_large_seated_nude_by_amedeo_modigliani.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_stag_night_at_sharkeys_by_george_bellows.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_night_cafe_by_vincent_van_gogh.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_avenue_in_the_rain_by_childe_hassam.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_annunciation_by_leonardo_da_vinci.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_ambassadors_by_hans_holbein_the_younger_n93.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_flaming_june_by_frederic_lord_leighton_i45.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_susanna_and_the_elders_by_artemisia_gentileschi_r8.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_composition_viii_by_wassily_kandinsky_k55.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_oath_of_horatii_by_jacques-louis_david_k39.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_a_friend_in_need_by_cassius_marcellus_coolidge.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_dante_and_virgil_in_hell_by_william-adolphe_bouguereau_f37.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_saturn_devouring_his_son_by_francisco_goya_a27.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_battle_of_issus_by_albrecht_altdorfer_e1.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_potato_eaters_by_vincent_van_gogh.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_birth_of_venus_by_alexandre_cabanel_r44.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_mars_and_venus_allegory_of_peace_by_louis-jean-francois_lagrenee_s96.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_red_balloon_by_paul_klee_g28.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_lady_of_shalott_by_john_william_waterhouse_v45.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_portrait_of_a_gentleman_skating_by_gilbert_stuart_d40.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_hay_wain_by_john_constable_z55.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_boat_trip_by_mary_cassatt_b96.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_sleeping_venus_by_titian_g21.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_adoration_of_the_magi_by_gentile_da_fabriano_c29.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_portrait_of_a_young_man_by_raphael_l5.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_boulevard_montmartre_spring_by_camille_pissarro_m76.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_wedding_at_cana_by_paolo_veronese_f69.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_anatomy_lesson_of_dr._nicolaes_tulp_by_rembrandt_o27.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_raft_of_the_medusa_by_theodore_gericault_i70.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_kiss_by_francesco_hayez_l46.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_bath_by_jean-leon_gerome_i47.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_fort_vimieux_by_joseph_mallord_william_turner_a45.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_japanese_bridge_by_claude_monet_s92.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_washington_crossing_the_delaware_by_emanuel_gottlieb_leutze_j38.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_garden_of_earthly_delights_-_central_panel_by_hieronymus_bosch_t34.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_supper_at_emmaus_by_caravaggio_k55.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_feast_of_the_rosary_by_albrecht_durer.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_hireling_shepherd_by_william_holman_hunt_v34.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_hunters_in_the_snow_by_pieter_bruegel_the_elder_k1.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_seed_of_areoi_by_paul_gauguin_z97.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_barge_haulers_on_the_volga_by_ilya_repin.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_odalisque_by_francois_boucher.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_cardsharps_by_caravaggio.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_pont_du_gard_by_hubert_robert.jpg" ,
+    "https://www.brushwiz.com/images/top-100/top_100_paintings_the_luncheon_on_the_grass_by_edouard_manet_d60.jpg"
+]
+
 
 const getRandomWord = () => {
     return Randomizer.elementFromArray(list);
@@ -1211,26 +1315,20 @@ const getRandomWords = (n:number) => {
     console.log("and random number",Randomizer.intInRangeInclusive(0,1000))
     return result;
 }
-let list = codenamesList;
+let list:Array<any> = codenamesList;
 
 const useUnderCoverList = () => list = undercoverList;
 const useDuetList = () => list = duetList;
 const useCodenamesList = () => list = codenamesList
-
-
-
-const getWordListName = () => {
-    if(list == undercoverList)return "Codenames: Undercover";
-    if(list == duetList) return "Codenames: Duet";
-    return "Codenames";
-}
-
+const useEmojiList = () => list = Emoji.ultron;
+const usePaintingsList = () => list = paintingsList;
 
 export const WordList = {
     getRandomWords:getRandomWords,
     getRandomWord:getRandomWord,
     useCodenamesList:useCodenamesList,
     useDuetList:useDuetList,
-    useUnderCoverList:useUnderCoverList,
-    getWordListName:getWordListName
+    useEmojiList:useEmojiList,
+    usePaintingsList:usePaintingsList,
+    useUnderCoverList:useUnderCoverList
 }

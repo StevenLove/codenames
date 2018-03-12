@@ -7,6 +7,8 @@
   <option  value="codenames">Codenames!</option>
   <option  value="undercover">Codenames: Deep Undercover!</option>
   <option  value="duet">Codenames: Duet!</option>
+  <option  value="emoji">Codenames: Emoji!</option>
+  <!-- <option  value="paintings">Codenames: Paintings!</option> -->
 </select>
 <!-- 
 <h4> A word-guessing game designed by Vlaada Chvátil.</h4>
@@ -55,9 +57,17 @@
   <span id="seedLabel">Seed:</span>
 </div>
 <!-- Grid -->
-<div class="team{{firstTeam}} showing firstTeam bar">{{firstTeam}} goes first <button class="timer" (click)="flipTimer()">{{timeSinceLastChange}}</button></div>
+<div class="team{{firstTeam}} showing firstTeam bar">
+  <span *ngIf="redScore || blueScore" id="scoreBoard">Red:{{redScore}}/{{redScoreMax}} | Blue:{{blueScore}}/{{blueScoreMax}}</span>
+  {{firstTeam}} goes first
+  <span *ngIf="timeSinceLastChange>=60" class="timer" (click)="flipTimer()">{{timeSinceLastChange}}</span>
+</div>
 <div id="gridDiv">
   <div *ngFor="let item of items" (click)="clickItem(item,$event)" class="gridItemDiv {{isSpymaster?'team'+item.trueTeam + ' spymaster' : 'team'+item.team}} {{item.revealed?'revealed':''}} ">
-    {{item.description}}
+    <div class="gridItemContents">
+      <div *ngIf="modeName!='emoji'">{{item.description}}</div>
+      <img *ngIf="modeName=='emoji'"class="emoji" src="http://twemoji.maxcdn.com/72x72/{{item.description}}.png">
+      <!-- <img class="painting" src="{{item.description}}"> -->
+    </div>
   </div>
 </div>
