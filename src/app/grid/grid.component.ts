@@ -292,17 +292,56 @@ export class GridComponent implements OnInit {
   zoom = {
     show:false,
     side:"left",
-    src:""
+    src:"",
+    label:""
   }
+
+  srcToLabel = str => {
+    /* str comes in as 'mona_lisa_r01' and goes out 'Mona Lisa' */
+    let words = str.replace(/_/g,' ').split(" ").map(word=>{
+      return word.charAt(0).toUpperCase()+word.slice(1);
+    });
+    // console.log("words",words);
+    let lastWord = words[words.length-1];
+    if(lastWord.length < 4 && lastWord.search(/\d/)>-1){
+      words.pop();
+    }
+    return words.join(" ");
+  }
+
+  isAnAssassin = () => this.items.filter(item=>item.team=="Black" && item.revealed).length > 0;
+  isGameOver = () => {
+    let redWon = this.getRedScore() >= this.getRedMaxScore();
+    let blueWon = this.getBlueScore() >= this.getBlueMaxScore();
+    // let assassin = this.isAnAssassin();
+    return redWon || blueWon;// || assassin;
+  }
+  isLabelRevealed = () => {
+    return this.isGameOver()
+  }
+
   showZoom = (src,event) => {
     // console.log("mouseenter event",event);
     let screenWidth = event.view.screen.width;
-    let mouseOnLeft = event.pageX < screenWidth/2;
+    let mouseOnLeft = event.screenX < screenWidth/2;
     this.zoom.side = mouseOnLeft?"right":"left";
+    console.log("event",event);
     // console.log(event.pageX,"pageX", screenWidth,"screen width",this.zoom,"zoom");
     this.zoom.show = true;
     this.zoom.src = src;
-    console.log("zoom",this.zoom);
+    let indices = [];
+    indices[0] = src.indexOf("paintings_") + 10; // beginning of title
+    indices[1] = src.indexOf("_by_"); // end of title
+    indices[2] = indices[1] + 4; // beginning of author
+    indices[3] = src.indexOf(".jpg"); // end of author
+
+    let title = src.slice(indices[0],indices[1]); // "mona_lisa"
+    title =  this.srcToLabel(title);
+    let author = src.slice(indices[2],indices[3]); // 
+    author = this.srcToLabel(author);
+    this.zoom.label = title + " by " + author;
+    
+    // console.log("zoom",this.zoom);
   }
   showLeftZoom = () => this.zoom.show &&  this.zoom.side=="left";
   showRightZoom = () => this.zoom.show && this.zoom.side=="right";

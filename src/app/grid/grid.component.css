@@ -70,7 +70,7 @@
     padding-top:2vh;
 }
 .painting{
-    height:19vh;
+    height:20vh;
     /* width:19vw; */
     padding-top:1vh;
 }
@@ -79,13 +79,14 @@
     position:absolute;
     /* height:83vh; */
     /* width:40vw; */
+    z-index:10; /* ahead of revealed gridItems */
     max-width:45vw;
     max-height:80vh;
     width:60vw;
     height:100vh;
     top:0px;
     border-radius:2vmin;
-    border:1vmin solid gray
+    border:2vmin solid gray
 }
 .zoom img{
     width:100%;
@@ -96,6 +97,15 @@
 }
 .zoom.right{
     right:0.5vw;
+}
+.zoomLabel{
+    position:absolute;
+    bottom:0px;
+    /* height:3vh; */
+    font-size:7vh;
+    background-color:white;
+    color:black;
+    opacity:0.8;
 }
 .revealed>.gridItemContents{
     opacity:0.25;

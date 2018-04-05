@@ -1,14 +1,14 @@
 <!-- <h1 *ngIf="modeName=='codenames'" class="lg"> Codenames! </h1>
 <h1 *ngIf="modeName=='undercover'" class="lg"> Codenames: Deep Undercover! </h1>
 <h1 *ngIf="modeName=='duet'" class="lg"> Codenames: Duet! </h1> -->
-<div id="titleDiv"> Codenames </div>
+<div id="titleDiv"> CodeGames </div>
 <select id="gameChooser" class="bar" #t (change)="chooseMode(t.value)">
   <option  value="codenames">Change Game Mode</option>
   <option  value="codenames">Codenames!</option>
   <option  value="undercover">Codenames: Deep Undercover!</option>
   <option  value="duet">Codenames: Duet!</option>
-  <option  value="emoji">Codenames: Emoji!</option>
-  <option  value="paintings">Codenames: Paintings!</option>
+  <option  value="emoji">CodeGames: Emoji!</option>
+  <option  value="paintings">CodeGames: Paintings!</option>
 </select>
 <!-- 
 <h4> A word-guessing game designed by Vlaada Chvátil.</h4>
@@ -69,6 +69,9 @@
 <div id="gridDiv">
   <div *ngIf="zoom.show" class="zoom {{zoom.side=='left'?'left':'right'}}">
     <img src="{{zoom.src}}">
+    <div *ngIf="isLabelRevealed()"class="zoomLabel">
+      {{zoom.label}}
+    </div>
   </div>
   <div *ngFor="let item of items" (click)="clickItem(item,$event)" class="gridItemDiv cols-{{cols}} rows-{{rows}} {{isSpymaster?'team'+item.trueTeam + ' spymaster' : 'team'+item.team}} {{item.revealed?'revealed':''}} ">
     <div class="gridItemContents">

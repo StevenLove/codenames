@@ -404,8 +404,45 @@ const codenamesList: string[] = [
     "Cap",
     "Triangle"
 ]
+const incelsList: string[] = [
+    /* Insults */
+    "Cuck",
+    "Roastie",
+    "Manlet",
+    /* Things */
+    "Rope",
+    "Cope",
+    "Hope",
+    "Blackpill",
+    "Redpill",
+    "Bluepill",
+    "SuicideFuel",
+    "Looksmatch",
+
+    /* Reactions */
+    "Kek",
+    "JFL",
+    /* People */
+    "Tyrone",
+    "Chad",
+    "Stacy",
+    "Chang",
+    "Curry",
+    "Incel",
+    "Elliot Rodger",
+    /* Facial features */
+    "Canthal Tilt",
+    "",
+    /* Misc */
+    "Mogged"
+
+
+]
 
 const undercoverList: string[] = [
+    /* Words that I've added */
+    "Cuckold",
+    /* Words from the game */
     "Horse",
     "Sauna",
     "Hooker",
