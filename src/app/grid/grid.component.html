@@ -67,11 +67,14 @@
   <span *ngIf="timeSinceLastChange>=60" class="timer" (click)="flipTimer()">{{timeSinceLastChange}}</span>
 </div>
 <div id="gridDiv">
+  <div *ngIf="zoom.show" class="zoom {{zoom.side=='left'?'left':'right'}}">
+    <img src="{{zoom.src}}">
+  </div>
   <div *ngFor="let item of items" (click)="clickItem(item,$event)" class="gridItemDiv cols-{{cols}} rows-{{rows}} {{isSpymaster?'team'+item.trueTeam + ' spymaster' : 'team'+item.team}} {{item.revealed?'revealed':''}} ">
     <div class="gridItemContents">
       <div *ngIf="!['emoji','paintings'].includes(modeName)">{{item.description}}</div>
       <img *ngIf="modeName=='emoji'" class="emoji" src="https://twemoji.maxcdn.com/72x72/{{item.description}}.png">
-      <img *ngIf="modeName=='paintings'" class="painting" src="{{item.description}}">
+      <img *ngIf="modeName=='paintings'" class="painting" src="{{item.description}}" (mouseenter)="showZoom(item.description,$event)" (mouseleave)="hideZoom()">
     </div>
   </div>
 </div>

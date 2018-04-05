@@ -289,6 +289,28 @@ export class GridComponent implements OnInit {
     return this.items.filter(item=>item.team=="Blue" && item.revealed).length;;
   }
 
+  zoom = {
+    show:false,
+    side:"left",
+    src:""
+  }
+  showZoom = (src,event) => {
+    // console.log("mouseenter event",event);
+    let screenWidth = event.view.screen.width;
+    let mouseOnLeft = event.pageX < screenWidth/2;
+    this.zoom.side = mouseOnLeft?"right":"left";
+    // console.log(event.pageX,"pageX", screenWidth,"screen width",this.zoom,"zoom");
+    this.zoom.show = true;
+    this.zoom.src = src;
+    console.log("zoom",this.zoom);
+  }
+  showLeftZoom = () => this.zoom.show &&  this.zoom.side=="left";
+  showRightZoom = () => this.zoom.show && this.zoom.side=="right";
+  getZoomSrc = () => this.zoom.src;
+  hideZoom = () => {
+    this.zoom.show = false;
+    // console.log("hidding zoom");
+  }
   // re = require("random-emoji");
   // console.log(re);
   // res = re.random({count:2});

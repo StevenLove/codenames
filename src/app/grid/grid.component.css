@@ -71,7 +71,31 @@
 }
 .painting{
     height:19vh;
+    /* width:19vw; */
     padding-top:1vh;
+}
+/* For zoomed paintings */
+.zoom{
+    position:absolute;
+    /* height:83vh; */
+    /* width:40vw; */
+    max-width:45vw;
+    max-height:80vh;
+    width:60vw;
+    height:100vh;
+    top:0px;
+    border-radius:2vmin;
+    border:1vmin solid gray
+}
+.zoom img{
+    width:100%;
+    height:100%;
+}
+.zoom.left{
+    left:0px;
+}
+.zoom.right{
+    right:0.5vw;
 }
 .revealed>.gridItemContents{
     opacity:0.25;
