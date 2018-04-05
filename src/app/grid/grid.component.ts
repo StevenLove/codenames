@@ -283,10 +283,10 @@ export class GridComponent implements OnInit {
     return max;
   }
   getRedScore = () => {
-    return this.items.filter(item=>item.team=="Red").length;
+    return this.items.filter(item=>item.team=="Red" && item.revealed).length;
   }
   getBlueScore = () => {
-    return this.items.filter(item=>item.team=="Blue").length;;
+    return this.items.filter(item=>item.team=="Blue" && item.revealed).length;;
   }
 
   // re = require("random-emoji");
