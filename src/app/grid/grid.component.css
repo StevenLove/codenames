@@ -52,6 +52,7 @@
     user-select:none;
     border-radius:2vmin;
     box-shadow:0px 0px 0px 1vmin gray inset;
+    position:relative;
 }
 .gridItemDiv.cols-5{
     width:19.5vw;
@@ -70,9 +71,15 @@
     padding-top:2vh;
 }
 .painting{
-    height:20vh;
-    /* width:19vw; */
+    max-height:20vh;
+    max-width: 19vw;
+    width:auto;
+    height:auto;
     padding-top:1vh;
+    /* vertical centering */
+    position:absolute; /* move relative to the container */
+    top:50%; /* put it halfway down the container */
+    transform:translate(-50%,-50%) /* move it up and left by 50% of the img's width/height */
 }
 /* For zoomed paintings */
 .zoom{

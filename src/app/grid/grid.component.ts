@@ -68,6 +68,7 @@ export class GridComponent implements OnInit {
     this.flipTimer();
     event.preventDefault();
     event.stopPropagation();
+    console.log(this.items);
     return false;
   }
 
@@ -166,6 +167,7 @@ export class GridComponent implements OnInit {
     /* assign key card's colors to all the grid items */
     generateKeyCard(numWords).forEach((color,index)=>this.items[index].trueTeam = color);
     // setTimeout(this.setSizes,1);
+    if(this.isSpymaster)this.setSpymaster();
   }
 
   setSeed = (seed:string) => {
