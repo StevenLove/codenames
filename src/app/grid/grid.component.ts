@@ -14,9 +14,12 @@ import { Emoji } from "../Emoji";
 })
 
 
-
-
-// const makeGridItem = 
+/*
+ TODO: for paintings version, I would like to figure out how to make the zoomed painting make sense
+ for mobile (since hover doesnt exist) and to make it remain the proper aspect ratio.
+ I may also want to change the design so that rather than having two hardcoded zooms (left & right) that
+ it's just one and maybe moves around more dynamically. maybe.
+*/
 
 export class GridComponent implements OnInit {
 
