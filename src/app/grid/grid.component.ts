@@ -64,6 +64,7 @@ export class GridComponent implements OnInit {
   clickItem = (item:GridItem,event) => {
     if(this.isSpymaster){
       this.toggleRevealItem(item);
+      this.playSound(item.trueTeam);
     }
     else{
       this.cycleTeam(item);
@@ -363,6 +364,30 @@ export class GridComponent implements OnInit {
   ss: SeedService;
   constructor(ss: SeedService) {
     this.ss = ss;
+  }
+
+  audioSrcs = ["","","",""]
+  currentAudioID = 0;
+  playSound = color => {
+    let urls = {
+      "Blue":"./assets/blue.wav",
+      "Red":"./assets/red.wav"
+    }
+    let url = urls[color];
+    
+    this.audioSrcs[this.currentAudioID] = url;
+    let el:HTMLAudioElement = document.getElementById("audioPlayer"+this.currentAudioID) as HTMLAudioElement;
+    console.log(this.audioSrcs,"srcs",el);
+    el.src = this.audioSrcs[this.currentAudioID];
+    // el.pause();
+    // el.currentTime=0;
+    // el.load();
+    // setTimeout(el.play,50);
+    el.play();
+    this.currentAudioID += 1;
+    if(this.currentAudioID >= 4){
+      this.currentAudioID = 0;
+    }
   }
 
   ngOnInit() {

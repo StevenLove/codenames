@@ -56,6 +56,14 @@
   <input id="seedBox" class="bar"type="text" #seedBox (input)="this.ss.setSeed(seedBox.value)" value="{{this.ss.initialSeed}}">
   <span id="seedLabel">Seed:</span>
 </div>
+
+<div class="bar">
+  <audio id="audioPlayer0"  ></audio>
+  <audio id="audioPlayer1"  ></audio>
+  <audio id="audioPlayer2"  ></audio>
+  <audio id="audioPlayer3"  ></audio>
+</div>
+
 <!-- Grid -->
 <div class="team{{firstTeam}} showing firstTeam bar">
   <span *ngIf="getRedScore() || getBlueScore()" id="scoreBoard">
