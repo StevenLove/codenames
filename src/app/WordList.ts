@@ -1357,7 +1357,7 @@ let list:Array<any> = codenamesList;
 const useUnderCoverList = () => list = undercoverList;
 const useDuetList = () => list = duetList;
 const useCodenamesList = () => list = codenamesList
-const useEmojiList = () => list = Emoji.ultron;
+const useEmojiList = () => list = Emoji.list;
 const usePaintingsList = () => list = paintingsList;
 
 export const WordList = {

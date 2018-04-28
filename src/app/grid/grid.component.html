@@ -57,7 +57,7 @@
   <span id="seedLabel">Seed:</span>
 </div>
 
-<div class="bar">
+<div ng-show="false">
   <audio id="audioPlayer0"  ></audio>
   <audio id="audioPlayer1"  ></audio>
   <audio id="audioPlayer2"  ></audio>
@@ -84,8 +84,12 @@
   <div *ngFor="let item of items" (click)="clickItem(item,$event)" class="gridItemDiv cols-{{cols}} rows-{{rows}} {{isSpymaster?'team'+item.trueTeam + ' spymaster' : 'team'+item.team}} {{item.revealed?'revealed':''}} ">
     <div class="gridItemContents">
       <div *ngIf="!['emoji','paintings'].includes(modeName)">{{item.description}}</div>
-      <img *ngIf="modeName=='emoji'" class="emoji" src="https://twemoji.maxcdn.com/72x72/{{item.description}}.png">
-      <img *ngIf="modeName=='paintings'" class="painting" src="{{item.description}}" (mouseenter)="showZoom(item.description,$event)" (mouseleave)="hideZoom()">
+      <!-- src="https://twemoji.maxcdn.com/72x72/{{item.description}}.png" -->
+      <div *ngIf="modeName=='emoji'" class="emoji">
+        <div class="emojiContent" (mouseenter)="showEmojiCaption" (mouseleave)="hideEmojiCaption()">{{item.description}}</div>
+        <div class="emojiCaption" ng-show>{{getEmojiCaption(item.description)}}</div>
+      </div>
+      <img *ngIf="modeName=='paintings'" class="painting" src="{{item.description}}" (mouseenter)="showPaintingZoom(item.description,$event)" (mouseleave)="hideZoom()">
     </div>
   </div>
 </div>

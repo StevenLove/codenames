@@ -1,4 +1,5 @@
 import * as _ from "lodash";
+let emojiLibrary = require("emoji-named-characters");
 
 console.log("emoji loaded");
 // document.write('<script src="https://twemoji.maxcdn.com/twemoji.min.js"></script>');
@@ -12,6 +13,8 @@ var morefaces = _.range(parseInt("1F466",16),parseInt("1F488",16));
 var actionPacked = _.range(parseInt("1F525",16),parseInt("1F529",16))
 
 var ultron:Array<any> = [];
+
+console.log(emojiLibrary);
 
 // ultron = ultron.concat(faces);
 
@@ -35,6 +38,18 @@ ultron = ultron.map(code => {
     return code.toString(16);
 })
 
+console.log("emojis",emojiLibrary);
+
+let list = Object.keys(emojiLibrary).map(key=>emojiLibrary[key].character);
+
+const getName = emoji => {
+    let index = Object.keys(emojiLibrary).findIndex(key=>emojiLibrary[key].character == emoji);
+    return Object.keys(emojiLibrary)[index];
+}
+
 export const Emoji = {
-    ultron:ultron
+    ultron:ultron,
+    list:list,
+    getName:getName,
+    library:emojiLibrary
 }

@@ -326,7 +326,11 @@ export class GridComponent implements OnInit {
     return this.isGameOver()
   }
 
-  showZoom = (src,event) => {
+  getEmojiCaption = emoji => {
+    return Emoji.getName(emoji);
+  }
+
+  showPaintingZoom = (src,event) => {
     // console.log("mouseenter event",event);
     let screenWidth = event.view.screen.width;
     let mouseOnLeft = event.screenX < screenWidth/2;
@@ -371,7 +375,9 @@ export class GridComponent implements OnInit {
   playSound = color => {
     let urls = {
       "Blue":"./assets/blue.wav",
-      "Red":"./assets/red.wav"
+      "Red":"./assets/red.wav",
+      "Gray":"./assets/gray.wav",
+      "Black":"./assets/wilhelm.wav"
     }
     let url = urls[color];
     
@@ -395,7 +401,6 @@ export class GridComponent implements OnInit {
     this.ss.getSeed().subscribe(this.setSeed);
     this.setSeed(this.ss.initialSeed);
     this.chooseAppropriateDefaultList();
-    console.log("emoji",Emoji.ultron);
 
  }
 
