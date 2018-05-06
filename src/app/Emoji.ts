@@ -1,4 +1,5 @@
 import * as _ from "lodash";
+declare var require: any;
 let emojiLibrary = require("emoji-named-characters");
 
 console.log("emoji loaded");
@@ -14,7 +15,7 @@ var actionPacked = _.range(parseInt("1F525",16),parseInt("1F529",16))
 
 var ultron:Array<any> = [];
 
-console.log(emojiLibrary);
+// console.log(emojiLibrary);
 
 // ultron = ultron.concat(faces);
 
@@ -38,18 +39,30 @@ ultron = ultron.map(code => {
     return code.toString(16);
 })
 
-console.log("emojis",emojiLibrary);
+// console.log("emojis",emojiLibrary);
+let map = Object.keys(emojiLibrary).reduce((acc,curr)=>{
+    let char = emojiLibrary[curr].character;
+    let description = curr;
+    acc[char] = description;
+    return acc;
+},{});
 
-let list = Object.keys(emojiLibrary).map(key=>emojiLibrary[key].character);
+let list = Object.keys(map);
 
+// let list = Object.keys(emojiLibrary).map(key=>emojiLibrary[key].character);
+// let emojiMap = {}; 
+// list.forEach(emoji=>{
+//     emojiMap[emojiLibrary[emoji]]
+// })
+// console.log("list",map);
 const getName = emoji => {
-    let index = Object.keys(emojiLibrary).findIndex(key=>emojiLibrary[key].character == emoji);
-    return Object.keys(emojiLibrary)[index];
+    return map[emoji];
 }
 
 export const Emoji = {
     ultron:ultron,
     list:list,
-    getName:getName,
-    library:emojiLibrary
+    // list:list,
+    getName:getName
+    // library:emojiLibrary
 }

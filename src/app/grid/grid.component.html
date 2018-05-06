@@ -48,8 +48,22 @@
 <p>
   Updated 3/10/2018
 </p> -->
+<!-- Reveal Captions -->
+<button id="showCaptions" *ngIf="['paintings','emoji'].includes(modeName)" class="btn" (click)="showCaptions = !showCaptions">
+  Show Captions
+  <span *ngIf="showCaptions">✅</span>
+  <span *ngIf="!showCaptions">❌</span>
+</button>
+<!-- Mute Sounds -->
+<button id="muteSounds" *ngIf="isSpymaster" class="btn" (click)="muteSounds = !muteSounds">
+  Mute Sounds
+  <span *ngIf="muteSounds">✅</span>
+  <span *ngIf="!muteSounds">❌</span>
+</button>
+<!-- Chill Tunes -->
 <button id="chillTunes" class="btn" (click)="showChillTunes = !showChillTunes">Chill Tunes</button>
 <iframe *ngIf="showChillTunes" src="https://open.spotify.com/embed/user/1137876031/playlist/35HE0QT1p4gOxhOnjZ6oky" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+<!-- Claim to be Spymaster -->
 <button *ngIf="!identityConfirmed" id="claimToBeSpymaster" class="btn" (click)="claimToBeSpymaster()">I am a Spymaster</button>
 <!-- Seed Box -->
 <div class="bar" style="position:relative">
@@ -64,6 +78,8 @@
   <audio id="audioPlayer3"  ></audio>
 </div>
 
+
+
 <!-- Grid -->
 <div class="team{{firstTeam}} showing firstTeam bar">
   <span *ngIf="getRedScore() || getBlueScore()" id="scoreBoard">
@@ -77,7 +93,7 @@
 <div id="gridDiv">
   <div *ngIf="zoom.show" class="zoom {{zoom.side=='left'?'left':'right'}}">
     <img src="{{zoom.src}}">
-    <div *ngIf="isLabelRevealed()"class="zoomLabel">
+    <div *ngIf="showCaptions"class="zoomLabel">
       {{zoom.label}}
     </div>
   </div>
@@ -86,8 +102,8 @@
       <div *ngIf="!['emoji','paintings'].includes(modeName)">{{item.description}}</div>
       <!-- src="https://twemoji.maxcdn.com/72x72/{{item.description}}.png" -->
       <div *ngIf="modeName=='emoji'" class="emoji">
-        <div class="emojiContent" (mouseenter)="showEmojiCaption" (mouseleave)="hideEmojiCaption()">{{item.description}}</div>
-        <div class="emojiCaption" ng-show>{{getEmojiCaption(item.description)}}</div>
+        <div class="emojiContent">{{item.description}}</div>
+        <div class="emojiCaption" *ngIf="showCaptions">{{getEmojiCaption(item.description)}}</div>
       </div>
       <img *ngIf="modeName=='paintings'" class="painting" src="{{item.description}}" (mouseenter)="showPaintingZoom(item.description,$event)" (mouseleave)="hideZoom()">
     </div>

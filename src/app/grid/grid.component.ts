@@ -328,7 +328,15 @@ export class GridComponent implements OnInit {
 
   getEmojiCaption = emoji => {
     return Emoji.getName(emoji);
+    // return "caption";
   }
+
+  showEmojiCaptions = ()=>{
+    return this.isGameOver();
+  };
+
+  showCaptions = false;
+  muteSounds = false;
 
   showPaintingZoom = (src,event) => {
     // console.log("mouseenter event",event);
@@ -373,10 +381,11 @@ export class GridComponent implements OnInit {
   audioSrcs = ["","","",""]
   currentAudioID = 0;
   playSound = color => {
+    if(this.muteSounds) return;
     let urls = {
       "Blue":"./assets/blue.wav",
       "Red":"./assets/red.wav",
-      "Gray":"./assets/gray.wav",
+      "Gray":"./assets/marilyn-gray.wav",
       "Black":"./assets/wilhelm.wav"
     }
     let url = urls[color];

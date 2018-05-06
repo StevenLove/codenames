@@ -78,8 +78,11 @@
 }
 .emojiCaption{
     position:absolute;
-    bottom:1vh;
-    left:0vh;
+    bottom:0vh;
+    left:1vh;
+    line-height:normal;
+    background-color:white;
+    color:black;
 }
 .painting{
     max-height:20vh;
@@ -209,6 +212,14 @@ kbd.key {
 }
 
 #chillTunes{
+    width:99vw
+}
+
+#showCaptions{
+    width:99vw
+}
+
+#muteSounds{
     width:99vw
 }
 
