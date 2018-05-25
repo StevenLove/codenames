@@ -69,7 +69,7 @@
 .emoji{
     position:relative;
     height:18vh;
-    padding-top:3vh;
+    padding-top:2vh;
 }
 .emojiContent{
     width: 100%;
@@ -184,6 +184,7 @@ kbd.key {
     background-color:white;
     color:black;
     width:20vw;
+    line-height:7.5vh;
     margin-left:auto;
     margin-right:auto;
 }
