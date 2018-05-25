@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-grid-item',
@@ -6,12 +6,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./grid-item.component.css']
 })
 export class GridItemComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+  @Input() name: string;
+  // @Input() url: string;
+  url = "";
+  
+  constructor() { 
+    
   }
 
-  description = "GRID COMPONENT TEST DESCRIPTION";
+  ngOnInit() {
+    console.log("constructing grid-item");
+    let hex = this.name.codePointAt(0).toString(16);
+    this.url = "https://twemoji.maxcdn.com/72x72/"+hex+".png";
+    console.log(this.url);
+  }
+
+  
+
+  // description = "GRID COMPONENT TEST DESCRIPTION";
 
 }

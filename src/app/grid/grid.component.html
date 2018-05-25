@@ -102,7 +102,10 @@
       <div *ngIf="!['emoji','paintings'].includes(modeName)">{{item.description}}</div>
       <!-- src="https://twemoji.maxcdn.com/72x72/{{item.description}}.png" -->
       <div *ngIf="modeName=='emoji'" class="emoji">
-        <div class="emojiContent">{{item.description}}</div>
+        <div class="emojiContent">
+          <!-- {{item.description}} -->
+          <app-grid-item name="{{item.description}}"></app-grid-item>
+        </div>
         <div class="emojiCaption" *ngIf="showCaptions">{{getEmojiCaption(item.description)}}</div>
       </div>
       <img *ngIf="modeName=='paintings'" class="painting" src="{{item.description}}" (mouseenter)="showPaintingZoom(item.description,$event)" (mouseleave)="hideZoom()">

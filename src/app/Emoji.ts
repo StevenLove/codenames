@@ -39,15 +39,78 @@ ultron = ultron.map(code => {
     return code.toString(16);
 })
 
-// console.log("emojis",emojiLibrary);
+let exclude = [
+    "9⃣",
+    "8⃣",
+    "7⃣",
+    "6⃣",
+    "5⃣",
+    "4⃣",
+    "3⃣",
+    "2⃣",
+    "1⃣",
+    "0⃣",
+]
+
+const keycapCode = "20e3";
+const emojiPresentationCode = "fe0f";
+const hasCode = (char,code) => {
+    return [0,1,2].find(index=>{
+        let point = char.codePointAt(index);
+        // console.log("point",point);
+        if(point == undefined) return false;
+        let hex = point.toString(16);
+        console.log("hex",hex);
+        return (hex == code)
+    }) != undefined;
+}
+const char2Codes = char => {
+    let codes = [];
+    let i = 0;
+    let point = char.codePointAt(i);
+    while(point != undefined){
+        codes.push(point.toString(16));
+        ++i;
+        point = char.codePointAt(i);
+    }
+    return codes;
+}
+const hasCodeStartingWith1f1 = char => {
+    let codes = char2Codes(char);
+    let found = codes.find(code=>{
+        return code.slice(0,3) == '1f1';
+    })
+    return found != undefined;
+}
+const shouldInclude = emoji => {
+    let char = emoji.character;
+    let types = emoji.types;
+    console.log(char);
+    let hasBadCodes = [keycapCode,emojiPresentationCode].find(code=>{
+        return hasCode(char,code);
+    }) != undefined;
+    let hasGoodTypes = ["noun","adjective"].find(type=>{
+        return types.includes(type);
+    }) != undefined;
+    return !hasBadCodes && hasGoodTypes && !hasCodeStartingWith1f1(char);
+}
+
+
 let map = Object.keys(emojiLibrary).reduce((acc,curr)=>{
     let char = emojiLibrary[curr].character;
+    if(!shouldInclude(emojiLibrary[curr])){
+        return acc;
+    }
+    // if(!types.includes("noun")){
+    //     return acc;
+    // }
     let description = curr;
-    acc[char] = description;
+    acc[char] = description; //{description:description,code:emojiLibrary[curr].};
     return acc;
 },{});
 
 let list = Object.keys(map);
+console.log("list of emoji",emojiLibrary);
 
 // let list = Object.keys(emojiLibrary).map(key=>emojiLibrary[key].character);
 // let emojiMap = {}; 
