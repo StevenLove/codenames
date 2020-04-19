@@ -129,6 +129,9 @@ export class GridComponent implements OnInit {
       this.rows = 4;
       numWords = 20;
     }
+    if(this.modeName == "francis"){
+      WordList.useFrancisList();
+    }
 
     /* initialize grid items with random words */
     WordList.getRandomWords(numWords).forEach(desc=>{
