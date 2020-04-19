@@ -9,6 +9,7 @@
   <option  value="duet">Codenames: Duet!</option>
   <option  value="emoji">CodeGames: Emoji!</option>
   <option  value="paintings">CodeGames: Paintings!</option>
+  <option  value="francis">CodeGames: Hungry Harry Has Hansen's</option>
 </select>
 <!-- 
 <h4> A word-guessing game designed by Vlaada Chvátil.</h4>
@@ -82,13 +83,13 @@
 
 <!-- Grid -->
 <div class="team{{firstTeam}} showing firstTeam bar">
-  <span *ngIf="getRedScore() || getBlueScore()" id="scoreBoard">
+  <span *ngIf="getRedScore() || getBlueScore()" id="scoreBoard" class="">
     <!-- <div class="bubble"> -->
       Red:{{getRedScore()}}/{{getRedMaxScore()}} | Blue:{{getBlueScore()}}/{{getBlueMaxScore()}}
     <!-- </div> -->
   </span>
   <div id="firstTeamBubble" class="bubble">{{firstTeam}} goes first</div>
-  <span *ngIf="timeSinceLastChange>=60" class="timer" (click)="flipTimer()">{{timeSinceLastChange}}</span>
+  <span *ngIf="timeSinceLastChange>=0" class="timer" (click)="flipTimer()">{{timeSinceLastChange}}</span>
 </div>
 <div id="gridDiv">
   <div *ngIf="zoom.show" class="zoom {{zoom.side=='left'?'left':'right'}}">

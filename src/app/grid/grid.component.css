@@ -1,6 +1,6 @@
 #titleDiv{
     width:99vw;
-    font-size:6vw;
+    font-size:8vh;
     height:14vh;
     line-height:14vh;
     font-weight:bold;
@@ -8,7 +8,7 @@
 }
 #gameChooser{
     width:99vw;
-    font-weight:bold;
+    /* font-weight:bold; */
     text-align:center;
 }
 #seedBox{
@@ -32,21 +32,21 @@
     flex-wrap:wrap;
     flex-direction:row;
     /* height: 600px; */
-    width: 99vw;
+    width: 100%;
     position:relative;
     justify-content: space-around;
 }
 .gridItemDiv{
     background:rgba(245, 222, 179, 0.8);
     height: 16vh;
-    width: 19.5vw;
+    width: 19vw;
     /* margin:1vw; */
     line-height:16vh;
     overflow:hidden;
     /* align-items: center;
     justify-content: center; */
     font-weight: bold;
-    font-size: 5vmin;
+    /* font-size: 5vmin; */
     text-align: center;
     color:black;
     user-select:none;
@@ -55,7 +55,7 @@
     position:relative;
 }
 .gridItemDiv.cols-5{
-    width:19.5vw;
+    width:19vw;
 }
 .gridItemDiv.rows-5{
     height:17vh
@@ -129,6 +129,9 @@
     color:black;
     opacity:0.8;
 }
+.gridItemContents{
+    padding:2px;
+}
 .revealed>.gridItemContents{
     opacity:0.25;
     text-shadow:none;
@@ -183,7 +186,7 @@ kbd.key {
 #firstTeamBubble{
     background-color:white;
     color:black;
-    width:20vw;
+    width:40vw;
     line-height:7.5vh;
     margin-left:auto;
     margin-right:auto;
@@ -197,19 +200,19 @@ kbd.key {
     text-align:center;
 }
 #scoreBoard .bubble{
-    width:30vw;
+    width:25vw;
     background-color:white;
     color:black;
 }
 
 .btn{
     height:14vh;
-    font-size:3vw;
+    font-size:7vh;
     line-height:7vh;
 }
 .bar{
     height:14vh;
-    font-size:3vw;
+    font-size:5vh;
     line-height:14vh;
 }
 
@@ -238,7 +241,7 @@ h1{
 #scoreBoard{
     position:absolute;
     left:2vw;
-    width:40vw;
+    width:25vw;
     font-size:3vw;
     height:14vh;
     text-align:left;
@@ -248,8 +251,16 @@ h1{
     position:absolute;
     right:2vw;
     top:0;
-    width:20vw;
-    font-size:3vw;
+    width:30vw;
+    font-size:7vh;
     height:14vh;
     text-align:right;
 }
+
+
+
+input, button, textarea {
+    -webkit-appearance: none;
+    background-color:#BDBDBD;
+    border-radius: 0;
+  }

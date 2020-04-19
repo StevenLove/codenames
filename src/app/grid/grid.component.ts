@@ -4,6 +4,8 @@ import { WordList } from '../WordList';
 import { Randomizer } from '../Randomizer';
 import { SeedService } from '../shared/seed.service';
 import { Emoji } from "../Emoji";
+import * as textFit from "textfit";
+
 
 
 @Component({
@@ -108,6 +110,9 @@ export class GridComponent implements OnInit {
     if(this.modeName == "codenames"){
       WordList.useCodenamesList();
     }
+    if(this.modeName == "francis"){
+      WordList.useFrancisWongList();
+    }
     
     if(this.modeName == "undercover"){
       WordList.useUnderCoverList();
@@ -172,6 +177,7 @@ export class GridComponent implements OnInit {
     generateKeyCard(numWords).forEach((color,index)=>this.items[index].trueTeam = color);
     // setTimeout(this.setSizes,1);
     if(this.isSpymaster)this.setSpymaster();
+    // window.textFit = textFit;
   }
 
   setSeed = (seed:string) => {
@@ -182,6 +188,7 @@ export class GridComponent implements OnInit {
     let maxVw = 30;
     let vw = Math.min(maxVw,calculatedVw);
     let el = document.querySelector('#seedLabel');
+    vw = 10; //hardcode to 10 seems fine.
     // console.log("style",el.getAttribute("style"));
     el.setAttribute("style","left: "+vw+"vw");
     // el.style.left = vw+"vw";
@@ -266,11 +273,13 @@ export class GridComponent implements OnInit {
   flipTimer = () => {
     this.timeSinceLastChange = 0;
     if(!this.timerStarted){
+      console.log("starting timer");
       window.setInterval(this.updateTimer,1000);
       this.timerStarted = true;
     }
   }
   private updateTimer = () => {
+    console.log("update timer",this.timeSinceLastChange);
     ++this.timeSinceLastChange;
     // twemoji.parse(document.body,{size:72});
   }
@@ -382,13 +391,20 @@ export class GridComponent implements OnInit {
   currentAudioID = 0;
   playSound = color => {
     if(this.muteSounds) return;
+
+    let nameToPath = name=>"./assets/"+name+".wav"
+    let blueUrls = ["blue","andersonblue","jamesblue","ginnyblue"].map(nameToPath);
+    let redUrls = ["red","amandared"].map(nameToPath);
+    let grayUrls = ["gray","marilyn-gray"].map(nameToPath);
+    let blackUrls = ["wilhelm"].map(nameToPath);
     let urls = {
-      "Blue":"./assets/blue.wav",
-      "Red":"./assets/red.wav",
-      "Gray":"./assets/marilyn-gray.wav",
-      "Black":"./assets/wilhelm.wav"
+      "Blue":blueUrls,
+      "Red":redUrls,
+      "Gray":grayUrls,
+      "Black":blackUrls
     }
-    let url = urls[color];
+    // let urlList = urls[color];
+    let url = Randomizer.elementFromArray(urls[color]);
     
     this.audioSrcs[this.currentAudioID] = url;
     let el:HTMLAudioElement = document.getElementById("audioPlayer"+this.currentAudioID) as HTMLAudioElement;
@@ -410,7 +426,13 @@ export class GridComponent implements OnInit {
     this.ss.getSeed().subscribe(this.setSeed);
     this.setSeed(this.ss.initialSeed);
     this.chooseAppropriateDefaultList();
-
+    setInterval(()=>{
+      let items = document.querySelectorAll('.gridItemDiv');
+      textFit(items,{minFontSize:8,maxFontSize:34});
+      // console.log("items",items);
+      items = document.querySelectorAll('.fittext');
+      textFit(items,{minFontSize:8,maxFontSize:34});
+    },1100)
  }
 
 }
